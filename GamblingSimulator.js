@@ -8,9 +8,7 @@ class GamblingSimulator {
         console.log(`------ Gambler starts with stake of $100 and bet $1 every day ------`);
 
         var getRandomValue = () => Math.floor(Math.random() * 2);
-
-        while (winStake < 150 || lostStake > 50) {
-
+        while (day <= 20) {
             if (getRandomValue() == 0) {
                 lostStake = lostStake - 1;
                 console.log(`amount after loose for a day is: ${lostStake}`);
@@ -19,11 +17,11 @@ class GamblingSimulator {
                 winStake = winStake + 1;
                 console.log(`amount after win for a day is: ${winStake}`);
             }
+            var winAmount = winStake - stake;
+            var lostAmount = stake - lostStake;
+            console.log(`Win amount of day ${day} is: ${winAmount} and Lost amount of day ${day}  is: ${lostAmount}`);
+            day++;
         }
-        if (winStake == 150)
-            console.log(`Gambler won 50 % of stake`);
-        else
-            console.log(`Gambler loose 50 % of stake`);
     }
 }
 
