@@ -1,0 +1,1 @@
+console.log(`\n****** Welcome to Gambling Simulation Problem *******\n`);
