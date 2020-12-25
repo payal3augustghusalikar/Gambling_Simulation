@@ -1,5 +1,5 @@
 
-var map = require('underscore/cjs/map.js');
+
 class GamblingSimulator {
     
     simulation = () => {
@@ -19,9 +19,9 @@ class GamblingSimulator {
 
         var getRandomValue = () => Math.floor(Math.random() * 2);
         while (day <= 30) {
-            //while (winStake < 150 || lostStake > 50) {
+       
 
-            if (getRandomValue() == 0) {//? lostStake = lostStake - 1 : winStake = winStake + 1
+            if (getRandomValue() == 0) {
                 lostStake = lostStake - 1;
                 console.log(`amount after loose for a day ${day} is: ${lostStake}`);
 
@@ -35,7 +35,7 @@ class GamblingSimulator {
             var lostAmount = stake - lostStake;
             console.log(`Win amount of day ${day} is: ${winAmount} and Lost amount of day ${day}  is: ${lostAmount}`);
 
-            if (winAmount > lostAmount) {//? winningMap.set(day, `${winAmount - lostAmount}`) : loosingMap.set(`day: ${day}`, `${lostAmount - winAmount}`
+            if (winAmount > lostAmount) {
 
                 console.log(`Day ${day} win by: ${winAmount - lostAmount}`);
                 winningMap.set(day, `${winAmount - lostAmount}`);
@@ -45,33 +45,21 @@ class GamblingSimulator {
                 loosingMap.set(day, `${lostAmount - winAmount}`)
             }
             day++;
-
-            //     } console.log(winningMap)
-            // }
         }
-        // function getKey(val) {
-        //     return [...winningMap].find(([key, value]) => val === value)[0];
-        //   }
+       
         console.log(`\n day and amount won is :`);
         console.log(winningMap)
         let maxWin = console.log(Math.max(...winningMap.values()))
 
-        (_.invert(winningMap))[maxWin];
+         let invertedMap = new Map([...winningMap.entries()].map(
+             ([key, value]) => ([value, key]))
+         );
 
-        // let invertedMap = new Map([...winningMap.entries()].map(
-        //     ([key, value]) => ([value, key]))
-        // );
-
-        // console.log(invertedMap.get(maxWin))
-        // => 1
-
-        // console.log(getByValue(winningMap, max))
-        //  console.log(getKey("Max:", Math.max(...winningMap.values())))
+         console.log(invertedMap.get(maxWin))
 
         console.log(`\n day and amount loss is :`);
         console.log(loosingMap)
         let maxLoose = console.log(Math.max(...loosingMap.values()))
-
     }
 }
 
